@@ -21,7 +21,7 @@ public class CategoriesController
     @Autowired
     private ProductDao productDao;
 
-    @GetMapping("")
+    @GetMapping({ "", "/" })
     public List<Category> getAll()
     {
         return categoryDao.getAllCategories();
