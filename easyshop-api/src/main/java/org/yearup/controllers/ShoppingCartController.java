@@ -47,12 +47,14 @@ public class ShoppingCartController
     }
 
     @PostMapping("/products/{productId}")
-    public void addProduct(@PathVariable int productId, Principal principal)
+    public ShoppingCart addProduct(@PathVariable int productId, Principal principal)
     {
         try
         {
             int userId = getUserId(principal);
             shoppingCartDao.addProduct(userId, productId);
+
+            return shoppingCartDao.getByUserId(userId);
         }
         catch(Exception e)
         {
@@ -61,14 +63,16 @@ public class ShoppingCartController
     }
 
     @PutMapping("/products/{productId}")
-    public void updateProduct(@PathVariable int productId,
-                              @RequestBody ShoppingCartItem item,
-                              Principal principal)
+    public ShoppingCart updateProduct(@PathVariable int productId,
+                                      @RequestBody ShoppingCartItem item,
+                                      Principal principal)
     {
         try
         {
             int userId = getUserId(principal);
             shoppingCartDao.updateQuantity(userId, productId, item.getQuantity());
+
+            return shoppingCartDao.getByUserId(userId);
         }
         catch(Exception e)
         {
@@ -77,12 +81,14 @@ public class ShoppingCartController
     }
 
     @DeleteMapping
-    public void clearCart(Principal principal)
+    public ShoppingCart clearCart(Principal principal)
     {
         try
         {
             int userId = getUserId(principal);
             shoppingCartDao.clearCart(userId);
+
+            return shoppingCartDao.getByUserId(userId);
         }
         catch(Exception e)
         {
