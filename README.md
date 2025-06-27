@@ -57,7 +57,6 @@ Ensure the test database is properly configured in your environment properties. 
 - Add support for product reviews and ratings
 - Enable order checkout and payment integration
 - Implement user profile updates and order history
-- Add pagination and filtering enhancements for product listings
 - Integrate admin dashboard UI
 
 ## Author
